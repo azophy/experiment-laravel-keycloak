@@ -11,10 +11,5 @@ EXPERIMENT SETUP LOGIN LARAVEL DENGAN KEYCLOAK
 
 ## how to user this repo
 
-0. Setup keycloak. The easiest ways is to use docker:
-
-```
-docker run -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:18.0.0 start-dev
-```
 1. Clone this repo
 2. `docker compose up`
