@@ -13,3 +13,22 @@ EXPERIMENT SETUP LOGIN LARAVEL DENGAN KEYCLOAK
 
 1. Clone this repo
 2. `docker compose up`
+
+## cara config keycloak (setup realm, user, client)
+- manual: ikuti tutorial di https://www.keycloak.org/getting-started/getting-started-docker#_create_a_realm
+- otomatis:
+  1. pastikan server keycloak sudah jalan
+  2. jalan script utk auto setup dengan command:
+  
+    ```
+    docker compose exec keycloak sh /app/scripts/keycloak-autosetup-example.sh
+    ```
+
+    script di atas akan membuat realm, user, & client dengan rincian:
+    - nama realm: test_realm
+    - nama client: test_client
+    - nama user: testuser, password: testpassword
+- cara test: bisa memanfaatkan aplikasi tester dari keycloak di keycloak.org/app . cukup masukkan alamat server keylok, nama realm, serta nama client. setelah itu bisa coba login dengan username yang sudah dibuat di tahap sebelumnya
+
+
+
