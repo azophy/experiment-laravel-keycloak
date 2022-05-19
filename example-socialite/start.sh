@@ -1,4 +1,6 @@
 #!/bin/sh
 
-php artisan migrate
-php artisan serve
+cd /app
+
+php artisan migrate --force
+php artisan serve --host 0.0.0.0
