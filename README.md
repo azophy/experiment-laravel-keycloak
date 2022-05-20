@@ -36,15 +36,27 @@ EXPERIMENT SETUP LOGIN LARAVEL DENGAN KEYCLOAK
 
 # example 1: With Laravel Socialite
 
-```
-cd example-socialite
-echo 'APP_KEY=' > .env
-touch database/database.sqlite
-docker compose up
-docker compose exec web sh -c "cd /app ; php artisan key:generate"
-```
+## step using this repo
+1. preparation
+  ```
+  cd example-socialite
+  echo 'APP_KEY=' > .env
+  touch database/database.sqlite
 
-step from scratch:
+  # using docker
+  docker compose up
+  docker compose exec web sh -c "cd /app ; php artisan key:generate"
+
+  # without docker
+  composer install
+  php artisan key:generate
+  ```
+
+2. config keycloak & laravel socialite. Script setting keycloak yang ada di repo ini masih butuh di setting, khususnya untuk base url & redirect url dari aplikasi yang akan kita koneksi-kan ke Keycloak.
+
+3. Test dengan membuka halaman web utama.
+
+## step from scratch:
 1. prepare php & composer. you may use:
   ```
   docker run -it --rm -v "$PWD:/app" -w /app php:8.1-cli-alpine sh
@@ -54,4 +66,5 @@ step from scratch:
   ```
   composer create-project laravel/laravel example-app
   ```
+
 
