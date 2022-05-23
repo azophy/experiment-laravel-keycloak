@@ -25,3 +25,12 @@ Route::controller(App\Http\Controllers\OAuthController::class)
 
         Route::get('/callback', 'callback')->name('callback');
     });
+
+Route::get('/protected', function () {
+    echo 'this page should be protected by login' ;
+    echo '<br><pre>' ;
+    print_r(Auth::user()) ;
+    echo '</pre>' ;
+    echo '<a href="/logout">Logout</a>';
+})->middleware('keycloak-web');
+

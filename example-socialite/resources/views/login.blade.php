@@ -71,6 +71,7 @@
             </fieldset>
             <button type="submit" class="contrast" onclick="event.preventDefault()">Login</button>
             <button type="button" class="contrast" onclick="window.location.href='{{ route('oauth.login') }}'">Login via Socialite</button>
+            <button type="button" class="contrast" onclick="window.location.href='{{ url('/protected') }}'">Example protected path</button>
           </form>
         </div>
         <div></div>
