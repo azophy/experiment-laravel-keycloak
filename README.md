@@ -67,4 +67,39 @@ EXPERIMENT SETUP LOGIN LARAVEL DENGAN KEYCLOAK
   composer create-project laravel/laravel example-app
   ```
 
+# example 2: using laravel web guard plugin (github.com/mariovalney/laravel-keycloak-web-guard)
 
+Sepemahaman saya, pendekatan ini hampir sama dengan pendekatan pertama via Socialite. Kalau dipikir2, memang keycloak by default menggunakan protokol OIDC, yang merupakan ekstensi dari protokol OAuth 2.0 yang digunakan Socialite. Akibatnya memang flow yang digunakan akan cukup banyak kemiripan.
+
+Perbedaan utama dari penggunaan library vs socialite ini adalah lib ini sudah menyertakan beberapa fungsionalitas lengkap seperti route + controller utk login & logout, middleware utk memeriksa hasil login, dan lain-lain. Kesamaannya antara lain lib ini blm menyertakan implementasi model User di database yang siap pakai, sehingga opsinya antara membuat model baru atau meng-extend base model yang disediakan oleh lib ini.
+
+## steps from scratch
+1. install packages
+  ```
+  composer require vizir/laravel-keycloak-web-guard
+  ```
+2. export config
+  ```
+  php artisan vendor:publish  --provider="Vizir\KeycloakWebGuard\KeycloakWebGuardServiceProvider"
+
+  ```
+3. setup keycloak:
+  - Add accepted callback params : `/callback`
+  - get public key in kaycloak admin page: Keycloak >> Realm Settings >> Keys >> RS256 >> Public Key
+  - change `config/auth.php` according to https://github.com/mariovalney/laravel-keycloak-web-guard#laravel-auth
+4. add protected routes. example:
+  ```
+  Route::get('/protected', function () {
+      echo 'this page should be protected by login' ;
+      echo '<br><pre>' ;
+      print_r(Auth::user()) ;
+      echo '</pre>' ;
+      echo '<a href="/logout">Logout</a>';
+  })->middleware('keycloak-web');
+  ```
+5. setting laravel
+  - edit .env
+  - edit redirect_url in `config/keycloak-web.php` into your protected route
+
+### Notes
+- per hari ini (23 mei 2022) masih terdapat bug sehingga fitur logout ini tidak bisa dipakai di keycloak versi 18 ke atas (https://github.com/mariovalney/laravel-keycloak-web-guard/issues/71 )
