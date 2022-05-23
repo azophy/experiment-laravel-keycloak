@@ -1,0 +1,23 @@
+services:
+  keycloak:
+      image: quay.io/keycloak/keycloak:latest
+      ports:
+        - 8080:8080
+      command: start-dev
+      volumes:
+        - ..:/app
+      environment:
+        KEYCLOAK_ADMIN: admin
+        KEYCLOAK_ADMIN_PASSWORD: admin
+
+  # simple laravel app with SQlite as DB Storage
+  web:
+    build:
+      context: .
+    depends_on:
+      - keycloak
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/app
+    command: sh /app/start.sh
