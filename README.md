@@ -103,3 +103,7 @@ Perbedaan utama dari penggunaan library vs socialite ini adalah lib ini sudah me
 
 ### Notes
 - per hari ini (23 mei 2022) masih terdapat bug sehingga fitur logout ini tidak bisa dipakai di keycloak versi 18 ke atas (https://github.com/mariovalney/laravel-keycloak-web-guard/issues/71 )
+
+# Example 3 : Keycloak integration into Vanilla PHP project
+
+Di sini saya mencoba melakukan integrasi dengan project PHP "kosongan" yang tanpa framework. Harapannya contoh yang ada di project ini bisa lebih applicable ke berbagai macam project, tidak cuman yg hanya berbasis laravel.
