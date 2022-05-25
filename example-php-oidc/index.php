@@ -8,14 +8,17 @@ $dotenv->safeLoad();
 
 use Jumbojett\OpenIDConnectClient;
 
-$oidc = new OpenIDConnectClient(getenv('KEYCLOAK_BASE_URL'),
-                                getenv('KEYCLOAK_CLIENT_ID'),
-                                getenv('KEYCLOAK_CLIENT_SECRET')
-                                );
-$oidc->setCertPath('/path/to/my.cert');
-$oidc->authenticate();
-$name = $oidc->requestUserInfo('given_name');
+function env($varname, $defaulValue=null) {
+  return $_ENV[$varname] ?? $defaulValue;
+}
 
+$oidc = new OpenIDConnectClient(env('KEYCLOAK_BASE_URL'),
+                                env('KEYCLOAK_CLIENT_ID'),
+                                env('KEYCLOAK_CLIENT_SECRET')
+                                );
+//$oidc->setCertPath('/path/to/my.cert');
+$oidc->authenticate();
+//$name = $oidc->requestUserInfo('given_name');
 
 ?>
 
@@ -55,6 +58,13 @@ $name = $oidc->requestUserInfo('given_name');
         <br>
         <p><a href="#"><i>Italic Link Button</i></a><a href="#"><b>Bold Link Button &rarr;</b></a></p>
     </header>
+    <main>
+      <h3>Important Keycloak Settings</h3>
+      <ul>
+        <li>Keycloak Base URL: <?=env('KEYCLOAK_BASE_URL')?></li>
+        <li>Keycloak Client Id: <?=env('KEYCLOAK_CLIENT_ID')?></li>
+      </ul>
+    </main>
     <footer>
         <hr>
         <p>
