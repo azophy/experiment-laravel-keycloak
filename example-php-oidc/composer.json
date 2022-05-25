@@ -1,0 +1,21 @@
+{
+    "name": "azophy/keycloak-php-example",
+    "description": "Experiment integrating Keycloak SSO Login into a PHP App",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Azophy\\KeycloakPhpExample\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Abdurrahman Shofy Adianto",
+            "email": "azophy@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.4.1",
+        "jumbojett/openid-connect-php": "^0.9.6"
+    }
+}
