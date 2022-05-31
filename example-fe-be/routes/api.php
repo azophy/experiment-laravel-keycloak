@@ -20,6 +20,6 @@ Route::get('/', function() {
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/protected', function() {
-        return json_encode(Auth::user());
+        return Auth::token();
     });
 });
