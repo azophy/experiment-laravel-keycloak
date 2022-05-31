@@ -107,3 +107,19 @@ Perbedaan utama dari penggunaan library vs socialite ini adalah lib ini sudah me
 # Example 3 : Keycloak integration into Vanilla PHP project
 
 Di sini saya mencoba melakukan integrasi dengan project PHP "kosongan" yang tanpa framework. Harapannya contoh yang ada di project ini bisa lebih applicable ke berbagai macam project, tidak cuman yg hanya berbasis laravel.
+
+# Example 4: Keycloak PHP integration with a project separated between BE & FE
+
+## plan:
+  + create basic laravel project with above library: https://github.com/robsontenorio/laravel-keycloak-guard
+  - setup basic client with keycloak javascript adapter: https://www.keycloak.org/docs/latest/securing_apps/#_javascript_adapter
+  - try to connect
+
+## install
+1. cd example-fe-be
+2. edit .env.example into .env
+3. docker compose up
+4. test: `http --json localhost:8000/api/protected`
+
+
+
